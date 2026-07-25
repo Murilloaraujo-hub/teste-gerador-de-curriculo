@@ -1,0 +1,1 @@
+# teste-gerador-de-curriculo
