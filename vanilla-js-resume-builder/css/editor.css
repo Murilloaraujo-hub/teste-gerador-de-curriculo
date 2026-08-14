@@ -1,0 +1,228 @@
+/* ============================================
+   EDITOR.CSS — Painel de edição (formulário)
+   ============================================ */
+
+.editor-secao {
+  background: var(--cor-fundo-painel);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: box-shadow var(--transicao);
+}
+
+.editor-secao:hover {
+  box-shadow: var(--sombra-sm);
+}
+
+.editor-secao-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  background: var(--cor-fundo-painel);
+  user-select: none;
+  transition: background var(--transicao);
+}
+
+.editor-secao-cabecalho:hover {
+  background: var(--cor-fundo);
+}
+
+.editor-secao-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.editor-secao-icone {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--raio-sm);
+  background: var(--cor-primaria-clara);
+  color: var(--cor-primaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+[data-theme="dark"] .editor-secao-icone {
+  background: rgba(37, 99, 235, 0.2);
+}
+
+.editor-secao-seta {
+  transition: transform var(--transicao);
+  color: var(--cor-texto-suave);
+}
+
+.editor-secao.colapsada .editor-secao-seta {
+  transform: rotate(-90deg);
+}
+
+.editor-secao-conteudo {
+  padding: 4px 16px 16px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.editor-secao.colapsada .editor-secao-conteudo {
+  display: none;
+}
+
+/* Item de lista (experiência, curso, etc.) */
+.lista-item {
+  position: relative;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  transition: border-color var(--transicao);
+}
+
+.lista-item:hover {
+  border-color: var(--cor-primaria);
+}
+
+.lista-item-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.lista-item-titulo {
+  font-weight: 600;
+  font-size: 13px;
+  flex: 1;
+  word-break: break-word;
+}
+
+.lista-item-subtitulo {
+  font-size: 12px;
+  color: var(--cor-texto-suave);
+  margin-top: 2px;
+}
+
+.lista-item-acoes {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.lista-item-conteudo {
+  display: none;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--cor-borda);
+}
+
+.lista-item.expandido .lista-item-conteudo {
+  display: block;
+  animation: aparecer 0.25s ease;
+}
+
+.btn-adicionar {
+  width: 100%;
+  padding: 10px;
+  border: 2px dashed var(--cor-borda);
+  border-radius: var(--raio-sm);
+  color: var(--cor-texto-suave);
+  font-weight: 500;
+  font-size: 13px;
+  transition: all var(--transicao);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-adicionar:hover {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+  background: var(--cor-primaria-clara);
+}
+
+[data-theme="dark"] .btn-adicionar:hover {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+/* Upload de foto */
+.campo-foto {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.campo-foto-preview {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--cor-fundo);
+  border: 2px dashed var(--cor-borda);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-texto-suave);
+  font-size: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: border-color var(--transicao);
+}
+
+.campo-foto-preview:hover {
+  border-color: var(--cor-primaria);
+}
+
+.campo-foto-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.campo-foto-info {
+  flex: 1;
+  font-size: 12px;
+  color: var(--cor-texto-suave);
+}
+
+/* Lista de habilidades em tags */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--cor-primaria-clara);
+  color: var(--cor-primaria);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .tag {
+  background: rgba(37, 99, 235, 0.2);
+}
+
+.tag-remover {
+  cursor: pointer;
+  opacity: 0.7;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.tag-remover:hover {
+  opacity: 1;
+}

@@ -1,0 +1,36 @@
+/* ============================================
+   PRINT.CSS — Estilos para impressão e exportação PDF
+   ============================================ */
+
+@media print {
+  body {
+    background: white;
+  }
+  .cabecalho,
+  .painel-editor,
+  .toast-container,
+  .modal-fundo {
+    display: none !important;
+  }
+  .corpo {
+    display: block;
+    overflow: visible;
+  }
+  .painel-visualizacao {
+    overflow: visible;
+    padding: 0;
+    background: white;
+  }
+  .folha-wrapper {
+    transform: none !important;
+  }
+  .folha {
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+    min-height: auto;
+  }
+  .folha.com-margens-guia::before {
+    display: none;
+  }
+}

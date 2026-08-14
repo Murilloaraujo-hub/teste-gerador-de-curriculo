@@ -1,0 +1,148 @@
+/* ============================================
+   LAYOUT.CSS — Cabeçalho e estrutura principal
+   ============================================ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- Cabeçalho ---------- */
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--cor-fundo-painel);
+  border-bottom: 1px solid var(--cor-borda);
+  box-shadow: var(--sombra-sm);
+  z-index: 10;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cabecalho-marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.cabecalho-logo {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-escura));
+  border-radius: var(--raio-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.cabecalho-nome {
+  color: var(--cor-texto);
+}
+
+.cabecalho-nome span {
+  color: var(--cor-primaria);
+}
+
+.cabecalho-acoes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cabecalho-controles {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding-left: 12px;
+  border-left: 1px solid var(--cor-borda);
+}
+
+.controle-zoom {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--cor-texto-suave);
+}
+
+.controle-zoom span {
+  min-width: 42px;
+  text-align: center;
+}
+
+/* ---------- Corpo Principal ---------- */
+.corpo {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(360px, 460px) 1fr;
+  overflow: hidden;
+  background: var(--cor-fundo);
+}
+
+.painel-editor {
+  background: var(--cor-fundo-painel);
+  border-right: 1px solid var(--cor-borda);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.painel-visualizacao {
+  overflow: auto;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background:
+    linear-gradient(45deg, transparent 48%, rgba(37,99,235,0.03) 49%, rgba(37,99,235,0.03) 51%, transparent 52%),
+    var(--cor-fundo);
+  background-size: 20px 20px;
+}
+
+.painel-visualizacao.sem-guia {
+  background: var(--cor-fundo);
+}
+
+/* ---------- Responsividade ---------- */
+@media (max-width: 960px) {
+  .corpo {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+  .painel-editor {
+    border-right: none;
+    border-bottom: 1px solid var(--cor-borda);
+  }
+  .painel-visualizacao {
+    padding: 20px 10px;
+  }
+  .cabecalho {
+    padding: 10px 14px;
+  }
+  .cabecalho-nome {
+    font-size: 14px;
+  }
+  .cabecalho-controles {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .cabecalho-acoes {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .btn span.rotulo-botao {
+    display: none;
+  }
+}
