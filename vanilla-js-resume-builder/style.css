@@ -570,7 +570,7 @@ a:hover { text-decoration: underline; }
 .folha {
   width: 210mm;
   min-height: 297mm;
-  background: white;
+  background: rgb(233, 186, 186);
   box-shadow: var(--sombra-lg);
   padding: 18mm 16mm;
   color: #1f2937;
@@ -601,7 +601,7 @@ a:hover { text-decoration: underline; }
 }
 .cv-profissao {
   font-size: 12pt;
-  color: #4b5563;
+  color: #7397c9;
   font-weight: 500;
   margin-bottom: 8px;
 }
@@ -624,7 +624,7 @@ a:hover { text-decoration: underline; }
   text-transform: uppercase;
   letter-spacing: 1px;
   padding-bottom: 4px;
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 1px solid #3577db;
   margin-bottom: 8px;
   color: var(--cor-cv);
 }
