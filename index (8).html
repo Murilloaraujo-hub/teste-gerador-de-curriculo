@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video2MP3 — Conversor de Vídeos para MP3</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="brand">
+                <span class="brand-icon">🎵</span>
+                <span class="brand-name">Video2MP3</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="#inicio" class="nav-link active">Início</a>
+                <a href="#como-funciona" class="nav-link">Como funciona</a>
+                <a href="#privacidade" class="nav-link">Privacidade</a>
+                <a href="#config" class="nav-link api-config-trigger" id="open-config-btn">⚙️ API</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content" id="inicio">
+        <section class="hero-section">
+            <div class="container text-center">
+                <div class="badge">Autorizado &amp; Seguro</div>
+                <h1 class="hero-title">Converta vídeos autorizados para MP3</h1>
+                <p class="hero-subtitle">Transforme vídeos autorizados em MP3. Processamento rápido e simples através do nosso servidor.</p>
+            </div>
+        </section>
+
+        <section class="converter-section container">
+            <div class="card converter-card">
+                <!-- Direct URL Input Box -->
+                <div class="input-group">
+                    <label for="video-url" class="input-label">🔗 Cole o link do vídeo</label>
+                    <div class="input-wrapper">
+                        <input type="url" id="video-url" class="url-input" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off">
+                        <button id="verify-btn" class="btn btn-primary">
+                            <span class="btn-text">Verificar vídeo</span>
+                            <span class="spinner" id="verify-spinner" style="display: none;"></span>
+                        </button>
+                    </div>
+                    <p class="input-hint">Exemplo: https://www.youtube.com/watch?v=dQw4w9WgXcQ</p>
+                </div>
+
+                <!-- Error Alert Box -->
+                <div id="error-box" class="alert alert-error" style="display: none;">
+                    <span class="alert-icon">⚠️</span>
+                    <div class="alert-content" id="error-message">
+                        Não foi possível processar este vídeo. Verifique a URL e tente novamente.
+                    </div>
+                </div>
+
+                <!-- Video Metadata Info Card -->
+                <div id="video-info-card" class="video-info-card" style="display: none;">
+                    <div class="video-preview-grid">
+                        <div class="video-thumbnail-wrapper">
+                            <img id="video-thumbnail" src="" alt="Thumbnail do Vídeo" class="video-thumbnail">
+                        </div>
+                        <div class="video-details">
+                            <h2 id="video-title" class="video-title">🎬 Título do vídeo</h2>
+                            <div class="meta-row">
+                                <span class="meta-item"><strong>Canal:</strong> <span id="video-channel">Nome do canal</span></span>
+                                <span class="meta-item"><strong>Duração:</strong> <span id="video-duration">00:00</span></span>
+                            </div>
+
+                            <div class="quality-selector-group">
+                                <label for="audio-quality" class="quality-label">Qualidade do MP3:</label>
+                                <select id="audio-quality" class="quality-select">
+                                    <option value="128">128 kbps (Econômico)</option>
+                                    <option value="192" selected>192 kbps (Padrão Recomendado)</option>
+                                    <option value="256">256 kbps (Alta Qualidade)</option>
+                                    <option value="320">320 kbps (Máxima Fidelidade)</option>
+                                </select>
+                            </div>
+
+                            <button id="convert-btn" class="btn btn-success btn-large">
+                                <span>Converter para MP3</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress & Processing State Box -->
+                <div id="progress-box" class="progress-box" style="display: none;">
+                    <div class="processing-header">
+                        <span class="processing-icon">⏳</span>
+                        <div>
+                            <h3 class="processing-title">Processando seu vídeo...</h3>
+                            <p class="processing-subtitle">Isso pode levar alguns minutos dependendo da duração do conteúdo e da carga do servidor.</p>
+                        </div>
+                    </div>
+
+                    <div class="status-indicator">
+                        <span id="status-step-text" class="status-step-text">1. Verificando URL...</span>
+                    </div>
+
+                    <div class="progress-bar-track">
+                        <div id="progress-bar-fill" class="progress-bar-fill indeterminate"></div>
+                    </div>
+                </div>
+
+                <!-- Conversion Completed Download Card -->
+                <div id="result-box" class="result-box" style="display: none;">
+                    <div class="result-badge">✓ Conversão concluída!</div>
+                    <div class="result-details">
+                        <div class="result-icon">🎵</div>
+                        <div class="result-info">
+                            <h3 id="result-filename" class="result-filename">nome-do-video.mp3</h3>
+                            <p class="result-meta">Formato: MP3 audio/mpeg • Pronto para download</p>
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <a id="download-link" class="btn btn-success btn-large" href="#" download>
+                            <span>⬇ Baixar MP3</span>
+                        </a>
+                        <button id="reset-btn" class="btn btn-secondary">
+                            <span>Converter outro vídeo</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information / Features Section -->
+        <section class="info-section container" id="como-funciona">
+            <h2 class="section-title">Como funciona</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">1</div>
+                    <h3>Cole o Link</h3>
+                    <p>Insira a URL do vídeo do YouTube que você possui permissão para converter.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">2</div>
+                    <h3>Escolha a Qualidade</h3>
+                    <p>Selecione a taxa de bits ideal para suas necessidades: 128, 192, 256 ou 320 kbps.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">3</div>
+                    <h3>FFmpeg No Backend</h3>
+                    <p>O servidor extrai e codifica o áudio em MP3 autêntico e de alta compatibilidade.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">4</div>
+                    <h3>Baixe o MP3</h3>
+                    <p>Faça o download direto do seu arquivo pronto para tocar em qualquer dispositivo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Section -->
+        <section class="privacy-section container" id="privacidade">
+            <div class="card privacy-card">
+                <div class="privacy-header">
+                    <span class="privacy-icon">🛡️</span>
+                    <h2>Privacidade e Conteúdo Autorizado</h2>
+                </div>
+                <p class="privacy-text">
+                    O <strong>Video2MP3</strong> não mantém seus arquivos permanentemente. O conteúdo utilizado durante o processamento é armazenado apenas temporariamente e removido imediatamente após a conversão.
+                </p>
+                <div class="notice-box">
+                    <p><strong>Aviso Importante:</strong> O sistema deve ser utilizado somente para vídeos que o usuário tenha autorização para baixar ou converter. Este projeto não possui nem implementa mecanismos para contornar DRM, autenticação, paywalls, vídeos privados ou restrições técnicas de plataformas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Backend Configuration Modal -->
+        <div id="config-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h3>⚙️ Configuração da API Backend</h3>
+                    <button id="close-config-btn" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Defina o endereço da API REST Python (Render) que processará as conversões:</p>
+                    <label for="api-url-input" class="input-label">URL da API (Backend):</label>
+                    <input type="url" id="api-url-input" class="url-input" placeholder="https://seu-backend.onrender.com">
+                    <p class="input-hint">Deixe em branco ou restaure o padrão para usar a URL padrão do projeto.</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-config-btn" class="btn btn-primary">Salvar Configuração</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>Video2MP3 — Projeto desenvolvido para conversão de conteúdo autorizado.</p>
+            <p class="footer-sub">Frontend: GitHub Pages | Backend: Render + Flask + FFmpeg</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

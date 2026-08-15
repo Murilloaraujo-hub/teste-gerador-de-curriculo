@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+*.mp3
+*.m4a
+*.webm
+*.tmp
+v2mp3_*
